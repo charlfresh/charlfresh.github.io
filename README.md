@@ -10,7 +10,7 @@ git is great website that allows you to easily make websites that can edited in 
 ### vim
 I completed the whole vim tutorial, so I understand it and am very comfortable with using it.
 ### markdown 
-I just learned this today, but so far it seems pretty to use and I have understood everything so far.
+I just learned this today, but so far it seems pretty easty to use and I have understood everything so far.
 ### git
 Git commiting comes very easily to me, but i have had some problmes setting up my git up repository (my index file is non existent).
 
