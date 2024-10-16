@@ -1,1 +1,1 @@
-<a href="Journal/">Click here to read my journal</a>
+<a href="journal/">Click here to read my journal</a>
