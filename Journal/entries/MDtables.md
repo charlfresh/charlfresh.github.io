@@ -29,3 +29,5 @@ my favorite cats
 | Garfield | Likes Lasagna |
 | Tom      | Chases Jerry  |
 | Meowth   | Pokemon       |
+
+![this is a picture of a pug](download.jpg)
