@@ -1,0 +1,3 @@
+- [My first journal entry](entries/README.md)
+- [My second journal entry](entries/NEADME.md)
+- [My third (in class md practice) journal entry](entries/MDtables.md)
