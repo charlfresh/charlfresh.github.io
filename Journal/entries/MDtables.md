@@ -31,3 +31,13 @@ my favorite cats
 | Meowth   | Pokemon       |
 
 ![this is a picture of a pug](download.jpg)
+
+## Now we'll do equations
+
+$y = mx + b$
+
+$f(x) = x^2$
+
+$f(x) = \frac{3}{4}$
+
+
