@@ -1,4 +1,5 @@
-### - [My Wordpress project](entries/wordpressproject.md)
+### - [My Recipes Project](../recipes/index.html)
+- [My Wordpress project](entries/wordpressproject.md)
 - [My first journal entry](entries/README.md)
 - [My second journal entry](entries/NEADME.md)
 - [My third (in class md practice) journal entry](entries/MDtables.md)
