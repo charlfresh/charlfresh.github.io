@@ -1,0 +1,23 @@
+/* this is an empty css file */
+
+body{ 
+	background: #222831;
+	color: #eeeeee; 
+}
+	
+header, nav, main{ 
+	background: #393e46; 
+}
+
+ul{ 
+	background: #0092ca; 
+}
+
+table, td, th{
+	border: 2px solid;
+	padding: 10px;
+	background-color: #0092ca;
+}
+h1, h2, caption{
+	font-family: Trattatello, fantasy;
+}
