@@ -10,7 +10,6 @@ padding: 10px;
 .item {
 padding: 20px;
 border: 5px solid;
-align: center;
 width: 49%;  
 margin-right: 10px; 
 background-color: #3a4750;
@@ -36,7 +35,6 @@ padding: 10px;
 }
 #d4{
 padding: 10px;
-align: center;
 width: 90vw;
 }
 h1{
