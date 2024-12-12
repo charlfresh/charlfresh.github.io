@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Box Model</title>
+	<script src="../js/init.js"></script>
+<style>
+.div{
+	width: 100px;
+	height: 100px;
+	background-clip: content-box;
+	border: 2px solid;
+}
+#d1{
+	background-color: red;
+	margin-left: 400px;
+}
+#d2{
+	background-color: blue;
+	padding: 100px;
+	margin-left: 502px;
+}
+#d3{
+	background-color: green;
+	padding-left: 20px;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+#d4{
+	background-color: yellow;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 40px;
+	margin-left: 400px; 
+}
+#d5{
+	background-color: purple;
+	margin-left: 300px;
+	padding-bottom: 100px;
+}
+</style>
+</head>
+<body>
+	<div class="div" id="d1"></div>
+	<div class="div" id="d2"></div>
+	<div class="div" id="d3"></div>
+	<div class="div" id="d4"></div>
+	<div class="div" id="d5"></div>
+</body>
+</html>
