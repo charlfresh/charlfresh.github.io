@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Grid Practice</title>
+	<script src="../js/init.js"></script>
+<style>
+#grid{
+	display:grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	height:80vh;
+}
+#item{
+	grid-row-start:2;
+	grid-column-start:2;
+	background:red;	
+
+}
+
+</style>
+</head>
+<body>
+	<div id="grid">
+		<div id="item"></div>	
+	</div>
+</body>
+</html>
