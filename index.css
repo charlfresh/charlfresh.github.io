@@ -1,65 +1,101 @@
-/* css */
-
-Body{
-font-size:16pt;
-font-family:'Cinzel', serif;
-font-weight:500;
-font-optical-sizing:auto;
-font-style:normal;
+body{
+	background: #1e2022;
+	text-color: black;
 }
-.container {
-display: flex; 
-padding: 10px; 
-} 
-.item {
-padding: 20px;
-border: 5px outset #be3144;
-width: 49%;  
-margin-right: 10px; 
-background-color: #be3144;
-display: flex; 
-justify-content: center; 
-align-items: center;
+header{
+	font-family: "Cinzel", serif;
+	color: #f0f5f9;
+	background: #1e2022;
 }
 
-#d3{
-border: 5px outset #be3144;
-display: flex;
-justify-content: center;
-padding: 10px;
-height: 150px;
-margin-top:20px;
+.container1{
+	Display: grid;
+	Grid-template-columns: 1fr 1fr 1fr 1fr;
+	Text-align: center;
 }
-#d5{
-border: 5px outset #be3144;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 10px;
+main{
+	background: #f0f5f9;
 }
-#d4{
-padding: 10px;
-width: 90vw;
+.container2{
+	Display: grid;
+	Grid-template-columns: 1fr 2fr 1fr;
+	grid-template-rows: 1fr;
+	height: 60vh;
+}
+.sitem{
+	background: #1e2022;
+	margin: 0px;
+}
+#d{
+	text-align: center;
 }
 h1{
-text-align: center;
+	background: #1e2022;
+	text-align: center;
 }
-img{
-border:5px inset rgb(190, 49, 68);
+#p1{
+	padding: 10px;
 }
-.first-color { 
-	background: #d3d6db; 
+img{ 
+	width: 100%;
+	height: auto; 
+}
+#i1{
+	grid-column-start: 1;
+}
+#i2{
+        grid-column-start: 2; 
+}
+#i3{
+        grid-column-start: 3; 
+}
+#i4{
+        grid-column-start: 4; 
+}
+.container3{
+	display:grid;
+	grid-template-columns: 8fr 10fr 7fr;
+	grid-template-rows: 3fr 10fr 7fr;
+	padding: 0px;
+	background: #1e2022;
+}
+#d1{
+	grid-row-start: 1;
+	grid-column: 1/5;
+	background: #f0f5f9;
+	text-align: center;
+}
+#d2{
+	grid-column-start: 1;
+	grid-row-start: 2;	
+}
+#d3{
+        grid-column-start: 2;
+        grid-row-start: 2;
+}
+#d4{
+        grid-column-start: 2;
+        grid-row-start: 3;
+}
+#d5{
+        grid-column-start: 3;
+        grid-row-start: 2;
+}
+#d6{
+        grid-column-start: 1;
+        grid-row-start: 3;
+}
+#d7{
+        grid-column-start: 3;
+        grid-row-start: 3;
+}
+div{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+p{
+	color: black;
+	font-family: serif;
 }
 	
-.second-color { 
-	background: #be3144; 
-}
-
-.third-color { 
-	background: #be3144; 
-}
-
-.fourth-color { 
-	background: #be3144; 
-}
-
