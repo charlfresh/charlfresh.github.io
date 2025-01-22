@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>10x10 Grid with CSS Grid</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      grid-template-rows: repeat(10, 1fr);
+      width: 100vmin;
+      height: 100vmin;
+      margin:auto;
+    }
+
+    .grid-container div {
+      background-color: #ddd;
+      border: 1px solid #fff; /* Optional border for better visual separation */
+    }
+
+    /* Color specific squares */
+    .grid-container div:nth-child(1){
+        background-color:black;
+}
+.grid-container div:nth-child(odd){
+        background-color: #d60600;
+}
+.grid-container div:nth-child(even){
+        background-color: #940400;
+}
+
+.grid-container div:nth-child(31),
+.grid-container div:nth-child(32),
+.grid-container div:nth-child(42),
+.grid-container div:nth-child(52),
+.grid-container div:nth-child(62),
+.grid-container div:nth-child(33),
+.grid-container div:nth-child(34),
+.grid-container div:nth-child(44),
+.grid-container div:nth-child(54),
+.grid-container div:nth-child(64),
+.grid-container div:nth-child(37),
+.grid-container div:nth-child(47),
+.grid-container div:nth-child(57),
+.grid-container div:nth-child(67),
+.grid-container div:nth-child(45),
+.grid-container div:nth-child(56),
+.grid-container div:nth-child(38),
+.grid-container div:nth-child(39),
+.grid-container div:nth-child(69),
+.grid-container div:nth-child(59),
+.grid-container div:nth-child(49),
+.grid-container div:nth-child(40){
+background-color:black;
+}
+.grid-container div:nth-child(35),
+.grid-container div:nth-child(36),
+.grid-container div:nth-child(41),
+.grid-container div:nth-child(43),
+.grid-container div:nth-child(46),
+.grid-container div:nth-child(48),
+.grid-container div:nth-child(50),
+.grid-container div:nth-child(51),
+.grid-container div:nth-child(53),
+.grid-container div:nth-child(55),
+.grid-container div:nth-child(58),
+.grid-container div:nth-child(60),
+.grid-container div:nth-child(61),
+.grid-container div:nth-child(63),
+.grid-container div:nth-child(65),
+.grid-container div:nth-child(66),
+.grid-container div:nth-child(68),
+.grid-container div:nth-child(70){
+background-color:white;
+}
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <!-- 100 divs -->
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+  </div>
+</body>
+</html>
