@@ -1,0 +1,37 @@
+body{
+	font-family: "Impact";
+}
+#parent{
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-rows: 4fr 1fr;
+}
+img{
+	width:100%;
+	height:auto;
+}
+h1{
+	text-align: center;
+	color: #ED1ABC;
+}
+#d1{
+	grid-column-start: 1;
+	background: #48BD0A;
+}
+#d2{
+	grid-column-start: 2;
+	background: white;
+}
+h3{
+        text-align: center;
+}
+
+#d3{
+	grid-column-start: 3;
+	background: #48BD0A;
+}
+#d4{
+	grid-column-start: 1;
+	grid-column-end: 4;
+	text-align: center;
+}
