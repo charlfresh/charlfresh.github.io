@@ -3,7 +3,7 @@ body{
 	background: #1e2022;
 }
 .image{
-	background-image: url(flx/all.png); /* Replace 'your-image.jpg' with the path to your image */
+	background-image: url(flx/all.png);
         background-size: contain;
         background-attachment: fixed;
         background-position: center top;
@@ -39,6 +39,49 @@ h1{
 	font-family: "Cinzel", serif;
 	color: #f0f5f9;
 }
+.buttons {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	width: 100%;
+	height: 150px;
+}
+.clickable {
+        background-color: grey;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+	margin: 5px;
+	font-family: "Cinzel", serif;
+	font-size: 2em;
+}
+.clickable:hover {
+	background-color: red;
+	margin: 5px;
+}
+
+.clickable a {
+	text-decoration: none;
+	color: inherit;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#c1 {
+	grid-column-start: 1;
+}
+#c2 {
+        grid-column-start: 2;
+}
+#c3 {
+        grid-column-start: 3;
+}
+
+
+
 #p1{
 	padding: 10px;
 }
@@ -60,9 +103,8 @@ img{
 }
 .container3{
 	display:grid;
-	grid-template-columns: 8fr 10fr 7fr;
-	grid-template-rows: 3fr 10fr 7fr;
-	padding: 0px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, auto);
 	background: #1e2022;
 }
 #d1{
