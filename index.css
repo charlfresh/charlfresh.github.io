@@ -1,17 +1,20 @@
 body{
-	background: #1e2022;
 	color: black;
-}
-header{
-	font-family: "Cinzel", serif;
-	color: #f0f5f9;
 	background: #1e2022;
+}
+.image{
+	background-image: url(flx/all.png); /* Replace 'your-image.jpg' with the path to your image */
+        background-size: contain;
+        background-attachment: fixed;
+        background-position: center top;
+	background-repeat: no-repeat;
+        height: 100vh;
+	width: 100%;
+}
+.content{
+	padding:5px
 }
 
-.container1{
-	Display: grid;
-	Grid-template-columns: 1fr 1fr 1fr 1fr;
-	Text-align: center;
 }
 main{
 	background: #f0f5f9;
@@ -28,10 +31,13 @@ main{
 }
 #d{
 	text-align: center;
+	background-color: #f0f5f9;
 }
 h1{
 	background: #1e2022;
 	text-align: center;
+	font-family: "Cinzel", serif;
+	color: #f0f5f9;
 }
 #p1{
 	padding: 10px;
