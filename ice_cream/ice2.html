@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/init.js"></script>
+    <title>Ice Cream Party</title>
+    <style>
+        form {
+            margin: 10px;
+            font-family: "impact", sans;
+        }
+        input[type=email], input[type=tel], input[type=number] {
+            border: 0px;
+            border-bottom: 1px solid;
+            padding: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        input[type=email]:focus, input[type=tel]:focus, input[type=number]:focus {
+            width: 25%;
+            height: 25px;
+            background-color: lightgrey;
+            outline: none;
+        }
+        #comments {
+            border: 0px;
+            border-bottom: 1px solid;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #comments:focus {
+            width: 50%;
+            height: 50px;
+            background-color: lightgrey;
+            border: blue;
+            outline: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        input[type=submit] {
+            width: 20%;
+            background-color: lightgrey;
+        }
+
+        /* General style for radio buttons */
+        input[type="radio"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ccc;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="radio"]#v:checked {
+            background-color: #F3E5AB;
+            border-color: #F3E5AB;
+        }
+        input[type="radio"]#cc:checked {
+            background-color: #8B4513; 
+            border-color: #8B4513;
+        }
+        input[type="radio"]#s:checked {
+            background-color: #FF6347; 
+            border-color: #FF6347;
+        }
+        input[type="radio"]#o:checked {
+            background-color: black; 
+            border-color: black;
+        }
+	input[type="checkbox"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+	input[type="checkbox"]#sprinkles:checked {
+            background-color: #FF69B4; 
+            border-color: #FF69B4;
+        }
+        input[type="checkbox"]#magicshell:checked {
+            background-color: #8A2BE2; 
+            border-color: #8A2BE2;
+        }
+        input[type="checkbox"]#chocolatechip:checked {
+            background-color: #D2691E; 
+            border-color: #D2691E;
+        }
+        input[type="checkbox"]#gummybear:checked {
+            background-color: #32CD32; 
+            border-color: #32CD32;
+        }
+        input[type="checkbox"]#othertopping:checked {
+            background-color: #FFD700; 
+            border-color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <form action="https://httpbin.org/post" method="POST">
+        <label for="email">What is your email address?</label><br>
+        <input type="email" name="email" id="email" placeholder="johndoe@email.com" required><br><br>
+        <label for="phone">What is your phone number?</label><br>
+        <input type="tel" name="phone" id="phone" placeholder="000-000-0000" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required><br><br>
+        <label for="people">How many people will you bring with you to the party?</label><br>
+        <input type="number" name="people" id="people" placeholder="10000" required><br>
+        <p>What is your favorite flavor of ice cream?</p>
+        <label>
+            <input type="radio" name="icecream" value="vanilla" id="v"> Vanilla
+        </label><br>
+        <label>
+            <input type="radio" name="icecream" value="chocolatechip" id="cc"> Chocolate Chip
+        </label><br>
+        <label>
+            <input type="radio" name="icecream" value="strawberry" id="s"> Strawberry
+        </label><br>
+        <label>
+            <input type="radio" name="icecream" value="other" id="o"> Other
+        </label><br>
+        <p>Which toppings do you like?</p>
+        <label>
+            <input type="checkbox" name="toppings" value="sprinkles" id="sprinkles"> Sprinkles
+        </label><br>
+        <label>
+            <input type="checkbox" name="toppings" value="magicshell" id="magicshell"> Magic Shell
+        </label><br>
+        <label>
+            <input type="checkbox" name="toppings" value="chocolatechip" id="chocolatechip"> Chocolate Chips
+        </label><br>
+        <label>
+            <input type="checkbox" name="toppings" value="gummybear" id="gummybear"> Gummy Bears
+        </label><br>
+        <label>
+            <input type="checkbox" name="toppings" value="other" id="othertopping"> Other
+        </label><br><br>
+        <label for="fun">What kind of entertainment should we have at the party?</label><br>
+        <select id="fun" name="fun">
+            <option value="none">None</option>
+            <option value="balloonanimals">Balloon Animals</option>
+            <option value="bouncehouse">Bounce House</option>
+            <option value="clown">Clown</option>
+            <option value="Cornhole">Cornhole</option>
+            <option value="DJ">DJ</option>
+            <option value="facepainting">Face Painting</option>
+            <option value="magician">Magician</option>
+        </select><br><br>
+        <label for="comments">Do you have any other suggestions or comments?</label><br>
+        <textarea name="comments" id="comments" placeholder="type here"></textarea><br>
+        <input type="submit" name="submit">
+    </form>
+</body>
+</html>
+
