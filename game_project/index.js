@@ -6,11 +6,10 @@ let player = {
     y: canvas.height / 2,
     width: 40,
     height: 20,
-    speed: 10,
-    angle: 0 // Rotation angle in degrees
+    speed: 6,
+    angle: 0
 };
 
-// Define Zombie Types
 let Normal = {
     x: 50,
     y: Math.floor(Math.random() * canvas.height),
@@ -38,14 +37,11 @@ let Speedy = {
     health: 75
 };
 
-// Zombies array to store multiple enemies
 let options = [Normal, Brute, Speedy];
 let activeZombies = [];
 
-// Bullet Storage
 let bullets = [];
 
-// Function to spawn a zombie
 function spawnZombie() {
     let zombieType = options[Math.floor(Math.random() * options.length)];
     let zombie = { 
@@ -56,7 +52,6 @@ function spawnZombie() {
     activeZombies.push(zombie);
 }
 
-// Function to draw all zombies
 function drawZombies() {
     activeZombies.forEach(zombie => {
         ctx.save();
@@ -65,11 +60,10 @@ function drawZombies() {
         ctx.fillRect(-zombie.width / 2, -zombie.height / 2, zombie.width, zombie.height);
         ctx.restore();
 
-        zombie.x -= zombie.speed; // Move zombie forward
+        zombie.x -= zombie.speed;
     });
 }
 
-// Shooting mechanics
 function shootBullet() {
     let bulletSpeed = 7;
     let angleRad = player.angle * Math.PI / 180;
@@ -90,7 +84,6 @@ function updateBullets() {
         bullet.x += bullet.dx;
         bullet.y += bullet.dy;
 
-        // Remove bullets that go off-screen
         if (bullet.x < 0 || bullet.x > canvas.width || bullet.y < 0 || bullet.y > canvas.height) {
             bullets.splice(index, 1);
         }
@@ -106,7 +99,6 @@ function drawBullets() {
     });
 }
 
-// Draw Player and Weapon
 function drawPlayer() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -118,7 +110,7 @@ function drawPlayer() {
     ctx.fillRect(-player.width / 2, -player.height / 2, player.width, player.height);
 
     ctx.fillStyle = "black";
-    ctx.fillRect(player.width / 2, -5, 20, 10); // Weapon
+    ctx.fillRect(player.width / 2, -5, 20, 10);
 
     ctx.restore();
 
@@ -126,45 +118,39 @@ function drawPlayer() {
     drawZombies();
 }
 
-// Player movement
-function movePlayer(event) {
-    switch (event.key) {
-        case "ArrowUp":
-            player.y -= player.speed;
-            break;
-        case "ArrowDown":
-            player.y += player.speed;
-            break;
-        case "ArrowLeft":
-            player.x -= player.speed;
-            break;
-        case "ArrowRight":
-            player.x += player.speed;
-            break;
-        case "z":
-            player.angle -= 15; // Rotate counterclockwise
-            break;
-        case "x":
-            player.angle += 15; // Rotate clockwise
-            break;
-    }
-    drawPlayer();
-}
-
-window.addEventListener("keydown", function(event) {
-    if (event.key === " ") {
-        shootBullet();
-    }
+let keys = {
+    ArrowUp: false,
+    ArrowDown: false,
+    ArrowLeft: false,
+    ArrowRight: false,
+    z: false, 
+    x: false
+};
+window.addEventListener("keydown", (event) => {
+    if (keys.hasOwnProperty(event.key)) keys[event.key] = true;
+    if (event.key === " ") shootBullet(); 
 });
 
-// Game loop
+window.addEventListener("keyup", (event) => {
+    if (keys.hasOwnProperty(event.key)) keys[event.key] = false;
+});
+function updatePlayerMovement() {
+    if (keys.ArrowUp) player.y -= player.speed;
+    if (keys.ArrowDown) player.y += player.speed;
+    if (keys.ArrowLeft) player.x -= player.speed;
+    if (keys.ArrowRight) player.x += player.speed;
+
+    if (keys.z) player.angle -= 2; 
+    if (keys.x) player.angle += 2;
+}
+
 function gameLoop() {
+    updatePlayerMovement();
     updateBullets();
     drawPlayer();
     requestAnimationFrame(gameLoop);
 }
 
-// Start spawning zombies
-setInterval(spawnZombie, 2000); // New zombie every 2 seconds
+setInterval(spawnZombie, 2000);
 gameLoop();
 window.addEventListener("keydown", movePlayer);
