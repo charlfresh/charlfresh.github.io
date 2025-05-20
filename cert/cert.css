@@ -1,0 +1,21 @@
+body {
+	background: #1e2022;
+	font-family: "Cinzel", serif;
+	color: white;
+}
+h1 { 
+	text-align: center;
+}
+#cont { 
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr;
+}
+img {
+	width: 100%;
+	height: auto;
+}
+a {
+	color: red;
+	margin: 20px;
+} 
