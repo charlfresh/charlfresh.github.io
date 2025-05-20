@@ -34,7 +34,7 @@ let Normal = {
     y: Math.floor(Math.random() * canvas.height),
     width: 30,
     height: 30,
-    speed: 1.5,
+    speed: 1,
     health: 100
 };
 
@@ -52,7 +52,7 @@ let Speedy = {
     y: Math.floor(Math.random() * canvas.height),
     width: 20,
     height: 20,
-    speed: 2.5,
+    speed: 1.5,
     health: 75
 };
 
@@ -123,15 +123,19 @@ function shootBullet() {
     let bulletSpeed = 7;
     let angleRad = player.angle * Math.PI / 180;
 
-    let bullet = {
-        x: player.x + Math.cos(angleRad) * player.width / 2,
-        y: player.y + Math.sin(angleRad) * player.width / 2,
-        dx: Math.cos(angleRad) * bulletSpeed,
-        dy: Math.sin(angleRad) * bulletSpeed,
-        size: 5
-    };
+    let bulletsToFire = tripleShotActive ? [-10, 0, 10] : [0];
 
-    bullets.push(bullet);
+    bulletsToFire.forEach(offset => {
+        let bullet = {
+    	    x: player.x + Math.cos(angleRad) * player.width / 2,
+            y: player.y + Math.sin(angleRad) * player.width / 2,
+            dx: Math.cos(angleRad) * bulletSpeed,
+            dy: Math.sin(angleRad) * bulletSpeed,
+            size: 5
+    	};
+
+    	bullets.push(bullet);
+    });
 }
 
 function isColliding(bullet, zombie) {
@@ -220,98 +224,69 @@ function updatePlayerMovement() {
     if (keys.z) player.angle -= 2; 
     if (keys.x) player.angle += 2;
     
-    if (player.x > 400) player.x = 390;
+    if (player.x > canvas.width) player.x = canvas.width - 10;
     if (player.x < 0) player.x = 10;
     if (player.y < 0) player.y = 10;
-    if (player.y > 400) player.y = 390
+    if (player.y > canvas.height) player.y = canvas.height - 10;
 }
 
-let powered_up = false;
-
-function powerCollision(){
-    let player_min_x = player.x - 20;
-    let player_max_x = player.x + 20;
-    let player_min_y = player.y - 20;
-    let player_max_y = player.y + 20;
-
-    let power_min_x = activePowerUp.x;
-    let power_max_x = activePowerUp.x + 50;
-    let power_min_y = activePowerUp.y;
-    let power_max_y = activePowerUp.y + 50;
-
-    if(power_max_y > player_min_y
-        && power_min_y < player_max_y
-        && power_max_x > player_min_x
-        && power_min_x < player_max_x){
-        powered_up = true
-
-    }
-    if (powered_up === true){
-	if (activePowerUp.type === 'Strength'){
-	    damage = 50;
-	}
-	if (activePowerUp.type === 'Speed'){
-	    player.speed = 8;
-	}
-	if (activePowerUp.type === 'Health'){
-	    gameHealth += 300;
-	}
-	if (activePowerUp.type === 'Bounce'){
-	    bullet.size = 10;
-	}
-	player.playerColor = 'pink'
-     }
-}
-
-
-powers = ["Strength", "Speed", "Health", "Bounce"]
+let powerUpTypes = [
+    { name: "Strength", effect: () => damage *= 2 },
+    { name: "Triple Shot", effect: () => tripleShotActive = true },
+    { name: "Health", effect: () => gameHealth += 300 },
+    { name: "Speed", effect: () => player.speed += 2 }
+];
 
 let activePowerUp = null;
-let powerUpSpeed = 4;
+let tripleShotActive = false;
 
 function spawnPowerUp() {
+    let type = powerUpTypes[Math.floor(Math.random() * powerUpTypes.length)];
     activePowerUp = {
-        type: powers[Math.floor(Math.random() * powers.length)],
+        ...type,
         x: canvas.width,
         y: Math.floor(Math.random() * canvas.height),
-        size: 10
+        width: 30,
+        height: 30,
+        speed: 0.5, 
+        health: 75
     };
 }
-
-function movePowerUp() {
-    if (activePowerUp) {
-        activePowerUp.x -= powerUpSpeed;
-        if (activePowerUp.x + activePowerUp.size <= 0) {
-            activePowerUp = null;
-        }
-    }
+function drawPowerUp() {
+    if (!activePowerUp) return;
+    ctx.fillStyle = "yellow";
+    ctx.fillRect(activePowerUp.x - activePowerUp.width / 2, activePowerUp.y - activePowerUp.height / 2, activePowerUp.width, activePowerUp.height);
+    activePowerUp.x -= activePowerUp.speed;
 }
 
-
-function drawPower(){
-    if (activePowerUp){
-	ctx.fillStyle = "pink";
-	ctx.beginPath();
-	ctx.arc(activePowerUp.x, activePowerUp.y, activePowerUp.size, 0, Math.PI * 2);
-	ctx.fill();
+function checkPowerUpCollision() {
+    if (!activePowerUp) return;
+    let { x, y, width, height } = player;
+    if (player.x + player.width > activePowerUp.x - activePowerUp.width / 2 &&
+        player.x < activePowerUp.x + activePowerUp.width / 2 &&
+        player.y + player.height > activePowerUp.y - activePowerUp.height / 2 &&
+        player.y < activePowerUp.y + activePowerUp.height / 2) {
+        
+        activePowerUp.effect();
+        activePowerUp = null; 
     }
+}
+function resetPowerUps() {
+    damage = 25;
+    player.speed = 6;
+    tripleShotActive = false;
 }
 
 function gameWave() {
     if (zombieCount === 5){ 
         wave += 1;
-        powered_up = false;
-	    if (powered_up === false){
-		bullet.size = 5;
-		player.speed = 6;
-		damage = 25;
-	    }
+	resetPowerUps();
+	spawnPowerUp();
         zombieCount = 0;
 	Normal.speed += 0.3;
 	Brute.speed += 0.2;
 	Speedy.speed += 0.4;
-	
-	spawnPowerUp();
+
     }
 }
 	 
@@ -349,13 +324,11 @@ function gameLoop() {
     drawHealth();
     gameWave();
     checkZombieEscape();
-    movePowerUp();
-    drawPower();
     drawZombies();
-    powerCollision();	
+    drawPowerUp();
+    checkPowerUpCollision();
 
     requestAnimationFrame(gameLoop);
 }
 
 setInterval(spawnZombie, 2000);
-
