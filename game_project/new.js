@@ -38,6 +38,13 @@ bruteImg.src = 'brute.png';
 const speedyImg = new Image();
 speedyImg.src = 'speedy.png';
 
+const playerImg = new Image();
+playerImg.src = 'player.png';
+
+
+const bgImg = new Image();
+bgImg.src = 'background.png';
+
 let Normal = {
     type: "normal",
     x: 50,
@@ -210,17 +217,17 @@ function drawBullets() {
 }
 
 function drawPlayer() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     ctx.save();
     ctx.translate(player.x, player.y);
     ctx.rotate(player.angle * Math.PI / 180);
 
-    ctx.fillStyle = player.playerColor;
-    ctx.fillRect(-player.width / 2, -player.height / 2, player.width, player.height);
-
-    ctx.fillStyle = "black";
-    ctx.fillRect(player.width / 2, -5, 20, 10);
+    ctx.drawImage(
+        playerImg,
+        -player.width / 2,
+        -player.height / 2,
+        player.width,
+        player.height
+    );
 
     ctx.restore();
 
@@ -348,6 +355,8 @@ function gameLoop() {
     gameWin();
     updatePlayerMovement();
     updateBullets();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
     drawPlayer();
     drawWave();
     drawHealth();
