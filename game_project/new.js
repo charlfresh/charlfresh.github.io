@@ -29,7 +29,17 @@ function drawHealth(){
     ctx.fillText('Health: ' + gameHealth, 270,30);
 }
 
+const normalImg = new Image();
+normalImg.src = 'normal.png';
+
+const bruteImg = new Image();
+bruteImg.src = 'brute.png';
+
+const speedyImg = new Image();
+speedyImg.src = 'speedy.png';
+
 let Normal = {
+    type: "normal",
     x: 50,
     y: Math.floor(Math.random() * canvas.height),
     width: 30,
@@ -39,6 +49,7 @@ let Normal = {
 };
 
 let Brute = {
+    type: "brute", 
     x: 50,
     y: Math.floor(Math.random() * canvas.height),
     width: 40,
@@ -48,6 +59,7 @@ let Brute = {
 };
 
 let Speedy = {
+    type: "speedy",
     x: 50,
     y: Math.floor(Math.random() * canvas.height),
     width: 20,
@@ -58,6 +70,7 @@ let Speedy = {
 
 let options = [Normal, Brute, Speedy];
 let activeZombies = [];
+let zombieCount = 0;
 
 let bullets = [];
 
@@ -95,6 +108,11 @@ canvas.addEventListener("click", function(event) {
 
 drawStartScreen();
 
+function getZombieImage(type) {
+    if (type === "normal") return normalImg;
+    if (type === "brute") return bruteImg;
+    if (type === "speedy") return speedyImg;
+    return normalImg; // fallback
 
 function spawnZombie() {
     let zombieType = options[Math.floor(Math.random() * options.length)];
@@ -111,9 +129,19 @@ function drawZombies() {
     activeZombies.forEach(zombie => {
         ctx.save();
         ctx.translate(zombie.x, zombie.y);
+	const img = getZombieImage(zombie.type);
+	ctx.drawImage(
+	    img,
+            -zombie.width / 2,
+	    -zombie.height / 2,
+	    zombie.width,
+            zombie.height
+	);
+    } else {
         ctx.fillStyle = "green";
         ctx.fillRect(-zombie.width / 2, -zombie.height / 2, zombie.width, zombie.height);
-        ctx.restore();
+    }    
+    ctx.restore();
 
         zombie.x -= zombie.speed;
     });
