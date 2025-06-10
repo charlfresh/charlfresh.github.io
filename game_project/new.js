@@ -42,8 +42,8 @@ let Normal = {
     type: "normal",
     x: 50,
     y: Math.floor(Math.random() * canvas.height),
-    width: 30,
-    height: 30,
+    width: 40,
+    height: 40,
     speed: 1,
     health: 100
 };
@@ -52,8 +52,8 @@ let Brute = {
     type: "brute", 
     x: 50,
     y: Math.floor(Math.random() * canvas.height),
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
     speed: 0.5,
     health: 200
 };
@@ -62,15 +62,15 @@ let Speedy = {
     type: "speedy",
     x: 50,
     y: Math.floor(Math.random() * canvas.height),
-    width: 20,
-    height: 20,
+    width: 30,
+    height: 30,
     speed: 1.5,
     health: 75
 };
 
 let options = [Normal, Brute, Speedy];
 let activeZombies = [];
-let zombieCount = 0;
+
 
 let bullets = [];
 
@@ -113,7 +113,7 @@ function getZombieImage(type) {
     if (type === "brute") return bruteImg;
     if (type === "speedy") return speedyImg;
     return normalImg; // fallback
-
+    }
 function spawnZombie() {
     let zombieType = options[Math.floor(Math.random() * options.length)];
     let zombie = { 
@@ -130,6 +130,7 @@ function drawZombies() {
         ctx.save();
         ctx.translate(zombie.x, zombie.y);
 	const img = getZombieImage(zombie.type);
+	if (img.complete && img.naturalWidth !== 0) {
 	ctx.drawImage(
 	    img,
             -zombie.width / 2,
@@ -350,7 +351,7 @@ function gameLoop() {
     drawPlayer();
     drawWave();
     drawHealth();
-    gameWave();
+    drawWave();
     checkZombieEscape();
     drawZombies();
     drawPowerUp();
