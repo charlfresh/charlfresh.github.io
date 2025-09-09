@@ -1,95 +1,24 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<head>
-		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" >
-		<title>CharlFresh</title>
-		<script src="js/init.js"></script>
-<link rel="stylesheet" type="text/css" href="index.css">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&display=swap" rel="stylesheet">
-		<meta charset="UTF-8"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	<body>
-	<div class="image">
-	</div>
-	<div class="content">
-	<header>
-		<h1>Welcome to my amazing website</h1>
-	</header>
-	<main>
-		<div class="container2">
-		<div class="sitem">
-		</div>
-		<div id="d">
-		<p id="p1">
-		My name is Charlie, I am a 10th grader at Washington Liberty high school. I play lacrosse and basketball, and I run XC. I also take sports pictures for the school. I am currently enrolled in a DE Web Design at the career center.
-		</p>
-		<video controls autoplay width="400">
-			<source src="peaceful.mp4" type="video/mp4">
-			<source src="peaceful.webm" type="video/webm">
-			Your browser does not support this video
-		</video>
-		</div>
-		<div class="sitem">
-		</div>
-		</div>
-		<div class="buttons">
-		<div id="c1" class="clickable">
-		<a href="cwork/index.html">Class Work</a>
-		</div>
-		<div id="c2" class="clickable">
-		<a href="https://github.com/charlfresh/charlfresh.github.io">Git Hub</a>
-		</div>
-		<div id="c3" class="clickable">
-		<a href="Journal/index.html">Journal</a>
-		</div>
-		<div id="c4" class="clickable">
-		<a href="game_project/index.html">Canvas Game</a>
-		</div>
-		<div id="c5" class="clickable">
-		<a href="certs/cert.html">Certifications</a>
-		</div>
-		<div id="c6" class="clickable">
-		<a href="final/final.html">Final Project</a>
-		</div>
-		</div>	
-		<div class="container3">
-		<div id="d1">
-		<p>
-		Wnl sports photogtaphy + personal
-		</p>
-		<p>
-		Photography Instgrams: 
-		dm  @cfresh.flicks
-		photos posted on @athletes.of.wnl
-		</p>
-		<p>
-		camera: Canon EOS R50
-		</p>
-		</div>
-		<div id="d2">
-			<img src="flx/tun.png" alt=" ">		
-		</div>
-		<div id="d3">
-		<img src="flx/jden.png" alt=" ">
-		</div>
-		<div id="d4">
-			<img src="flx/sky.png" alt=" ">
-		</div>
-		<div id="d5">
-			<img src="flx/rocks.png" alt=" ">
-		</div>
-		<div id="d6">
-                        <img src="flx/tree.png" alt=" ">
-                </div>
-		<div id="d7">
-                        <img src="flx/tfs.png" alt=" ">
-                </div>
-		</div>
-	</main>
-	</div>
-	</body>
-</html>	
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Clash-like MVP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Clash-like MVP</h1>
+  <p class="instructions">Click a card to select it, then click on your half of the arena to deploy. Enemy will auto-play. First side to destroy both enemy towers wins.</p>
+
+  <div id="hud">
+    <canvas id="game" width="900" height="520"></canvas>
+    <div id="ui">
+      <div id="elixir">Elixir: <span id="elixirVal">0</span>/10</div>
+      <div id="deck" class="hand"></div>
+      <button id="restart">Restart</button>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
