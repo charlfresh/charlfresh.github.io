@@ -93,29 +93,65 @@
     if(elixirEl) elixirEl.innerText = Math.floor(elixir);
   }
 
-  canvas.addEventListener('click', (ev)=>{
-    const rect = canvas.getBoundingClientRect();
-    const x = (ev.clientX - rect.left) * (canvas.width/rect.width);
-    const y = (ev.clientY - rect.top) * (canvas.height/rect.height);
-    if(selectedCard===null) return;
-    const cardName = hand[selectedCard];
-    const def = CARD_TYPES[cardName];
-    if(def.troopType !== 'spell' && y < H/2) return;
-    if(elixir < def.cost) { selectedCard = null; renderHand(); return; }
-    elixir -= def.cost;
-    if(!playerHasDeployed){ playerHasDeployed = true; aiStartTime = Date.now() + 800; }
-    if(def.troopType === 'spell'){
-      applySpell(cardName, x, y, 'player');
-      flashes.push({ x, y, r: def.radius, life: 450, color: def.flashColor || 'rgba(255,255,255,0.9)' });
-    } else {
-      for(let i=0;i<def.count;i++){
-        const offsetX = (i - (def.count-1)/2) * (def.size + 6);
-        deployUnit(cardName, x + offsetX, y + Math.random()*6 - 3, 'player');
-      }
-    }
-    selectedCard = null; renderHand();
-  });
+  // --- Pointer/touch-safe placement helper and handler (replace old click listener) ---
+function getCanvasPos(ev){
+  const rect = canvas.getBoundingClientRect();
+  // support pointer events and touch events
+  const clientX = (ev.clientX !== undefined) ? ev.clientX : (ev.touches && ev.touches[0] && ev.touches[0].clientX);
+  const clientY = (ev.clientY !== undefined) ? ev.clientY : (ev.touches && ev.touches[0] && ev.touches[0].clientY);
+  // convert to logical coordinates (account for backing store DPR)
+  const x = (clientX - rect.left) * (canvas.width / rect.width) / (window.devicePixelRatio || 1);
+  const y = (clientY - rect.top)  * (canvas.height / rect.height) / (window.devicePixelRatio || 1);
+  return { x, y };
+}
 
+canvas.addEventListener('pointerdown', (ev) => {
+  ev.preventDefault();
+  const { x, y } = getCanvasPos(ev);
+
+  if (selectedCard === null) return;
+  const cardName = hand[selectedCard];
+  const def = CARD_TYPES[cardName];
+
+  // Troops may only be placed on player's half; spells allowed anywhere.
+  if (def.troopType !== 'spell' && y <= H / 2) {
+    // feedback: clear selection so user must re-select to avoid accidental repeats
+    selectedCard = null;
+    renderHand();
+    return;
+  }
+
+  // Clamp spawn inside arena margins so units don't spawn off-screen
+  const margin = 40;
+  const spawnX = Math.max(margin, Math.min(W - margin, x));
+  // for troop spawns, also keep them reasonably above the bottom edge and below the center
+  const spawnY = (def.troopType === 'spell')
+    ? Math.max(margin, Math.min(H - margin, y))
+    : Math.max(H / 2 + 20, Math.min(H - margin, y));
+
+  // cost check
+  if (elixir < def.cost) {
+    selectedCard = null;
+    renderHand();
+    return;
+  }
+
+  elixir -= def.cost;
+  if (!playerHasDeployed) { playerHasDeployed = true; aiStartTime = Date.now() + 800; }
+
+  if (def.troopType === 'spell') {
+    applySpell(cardName, spawnX, spawnY, 'player');
+    flashes.push({ x: spawnX, y: spawnY, r: def.radius, life: 450, color: def.flashColor || 'rgba(255,255,255,0.9)' });
+  } else {
+    for (let i = 0; i < def.count; i++) {
+      const offsetX = (i - (def.count - 1) / 2) * (def.size + 6);
+      deployUnit(cardName, spawnX + offsetX, spawnY + (Math.random() * 6 - 3), 'player');
+    }
+  }
+
+  selectedCard = null;
+  renderHand();
+});
   function applySpell(name, x, y, side){
     const def = CARD_TYPES[name];
     if(name === 'arrows' || name === 'fireball'){
