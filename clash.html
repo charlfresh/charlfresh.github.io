@@ -1,23 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Clash-like MVP</title>
-  <link rel="stylesheet" href="clash.css" />
+  <title>Clash Prototype</title>
+  <link rel="stylesheet" href="clash.css">
 </head>
 <body>
-  <h1>Clash-like MVP</h1>
-  <p class="instructions">Click a card to select it, then click on your half of the arena to deploy. Enemy will auto-play. First side to destroy both enemy towers wins.</p>
-
-  <div id="hud">
-    <canvas id="game" width="900" height="520"></canvas>
-    <div id="ui">
-      <div id="elixir">Elixir: <span id="elixirVal">0</span>/10</div>
-      <div id="deck" class="hand"></div>
+  <div id="ui">
+    <div id="hud">
+      <div id="elixir">Your Elixir: <span id="elixirVal">0</span></div>
       <button id="restart">Restart</button>
     </div>
+    <div id="deck"></div>
   </div>
+
+  <canvas id="game" width="900" height="600"></canvas>
 
   <script src="clash.js"></script>
 </body>
