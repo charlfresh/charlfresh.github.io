@@ -6,7 +6,7 @@
 
   // Game constants
   const MAX_ELIXIR = 10;
-  const ELIXIR_RATE = 1; // per second
+  const ELIXIR_RATE = 2; // per second
 
   // Towers
   const towers = {
