@@ -41,7 +41,7 @@
 
   // Card definitions (trippi troppis movement/hit restored to normal)
   const CARD_TYPES = {
-    "trippi troppis": { cost:1, hp:120, dmg:70, range:18, speed:120, size:10, color:'#ffd17a', hitSpeed:350, targets:'ground', troopType:'ground', count:3, attackType:'melee' },
+    "trippi troppis": { cost:1, hp:120, dmg:70, range:18, speed:70, size:10, color:'#ffd17a', hitSpeed:700, targets:'ground', troopType:'ground', count:3, attackType:'melee' },
     "Brr Brr patapim": { cost:5, hp:4500, dmg:450, range:26, speed:28, size:34, color:'#c84b4b', hitSpeed:1000, targets:'tower', troopType:'ground', count:1, attackType:'melee' },
     "Lirili Larila": { cost:3, hp:700, dmg:140, range:160, speed:70, size:16, color:'#9ad7ff', hitSpeed:800, targets:'all', troopType:'ground', count:1, attackType:'shot', slow:true, projSpeed:420, projRadius:8 },
     "Tung sahur": { cost:4, hp:1600, dmg:650, range:20, speed:60, size:22, color:'#ff9f7a', hitSpeed:900, targets:'ground', troopType:'ground', count:1, attackType:'melee' },
