@@ -17,3 +17,5 @@ What's intentionally missing:
 - Sound effects
 
 This is a starting point you can iterate on — add better AI, particle effects, pathing, spells and more.
+
+<game_project>
